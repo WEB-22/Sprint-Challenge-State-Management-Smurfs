@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getSmurf } from '../actions';
+import { getSmurf, createSmurf } from '../actions';
 
 import Smurf from './Smurf.js';
 
@@ -21,25 +21,34 @@ const SmurfList = ({ getSmurf, smurfs, isFetching, error }) => {
 		return <h3>Smurfs aren't home Yet!</h3>;
 	}
 
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		const newSmurf = {
+			name: smurfName,
+			age: smurfAge,
+			height: smurfHeight
+		};
+		createSmurf(newSmurf);
+		console.log('smurfs', smurfs);
+	};
+
 	const nameHandleChange = (event) => {
 		setSmurfName(event.target.value);
-		console.log(smurfName);
 	};
 
 	const ageHandleChange = (event) => {
 		setSmurfName(event.target.value);
-		console.log(smurfName);
 	};
 
 	const heightHandleChange = (event) => {
 		setSmurfName(event.target.value);
-		console.log(smurfName);
 	};
 
 	return (
 		<div>
 			{/* // todo come back and look at why im getting this error in the map. */}
-			<form>
+			<form onSubmit={handleSubmit}>
 				<label>
 					Smurf Name:
 					<input type="text" name="name" onChange={nameHandleChange} />
@@ -65,4 +74,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getSmurf })(SmurfList);
+export default connect(mapStateToProps, { getSmurf, createSmurf })(SmurfList);
