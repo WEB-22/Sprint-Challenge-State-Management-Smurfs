@@ -31,3 +31,7 @@
 		transform: rotate(360deg);
 	}
 }
+
+.ui.four.cards {
+	margin-top: 20px;
+}

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
+import { Card } from 'semantic-ui-react';
+
 import { getSmurf, createSmurf } from '../actions';
 
 import Smurf from './Smurf.js';
 
-const SmurfList = ({ getSmurf, smurfs, isFetching, error }) => {
+const SmurfList = ({ createSmurf, getSmurf, smurfs, isFetching, error }) => {
 	const [ smurfName, setSmurfName ] = useState('');
 	const [ smurfAge, setSmurfAge ] = useState('');
 	const [ smurfHeight, setSmurfHeight ] = useState('');
@@ -30,7 +32,7 @@ const SmurfList = ({ getSmurf, smurfs, isFetching, error }) => {
 			height: smurfHeight
 		};
 		createSmurf(newSmurf);
-		console.log('smurfs', smurfs);
+		getSmurf();
 	};
 
 	const nameHandleChange = (event) => {
@@ -38,16 +40,15 @@ const SmurfList = ({ getSmurf, smurfs, isFetching, error }) => {
 	};
 
 	const ageHandleChange = (event) => {
-		setSmurfName(event.target.value);
+		setSmurfAge(event.target.value);
 	};
 
 	const heightHandleChange = (event) => {
-		setSmurfName(event.target.value);
+		setSmurfHeight(event.target.value);
 	};
 
 	return (
 		<div>
-			{/* // todo come back and look at why im getting this error in the map. */}
 			<form onSubmit={handleSubmit}>
 				<label>
 					Smurf Name:
@@ -59,9 +60,11 @@ const SmurfList = ({ getSmurf, smurfs, isFetching, error }) => {
 				</label>
 				<button type="submit">Add</button>
 			</form>
-			{smurfs.map((smurf) => {
-				return <Smurf smurf={smurf} />;
-			})}
+			<Card.Group itemsPerRow={4}>
+				{smurfs.map((smurf) => {
+					return <Smurf smurf={smurf} key={smurf.id} />;
+				})}
+			</Card.Group>
 		</div>
 	);
 };

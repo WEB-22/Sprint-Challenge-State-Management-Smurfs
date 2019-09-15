@@ -1,15 +1,30 @@
 import React from 'react';
+import { Card } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
-const Smurf = ({ smurf }) => {
+import { connect } from 'react-redux';
+
+import { deleteSmurf, getSmurf } from '../actions';
+
+const Smurf = ({ smurf, deleteSmurf, getSmurf }) => {
+	const deleteSmurfs = (event) => {
+		event.preventDefault();
+
+		deleteSmurf(smurf);
+		getSmurf();
+		console.log(smurf);
+	};
+
 	return (
-		<div>
-			<div>
-				<h2>name: {smurf.name}</h2>
-				<h2>age: {smurf.age}</h2>
-				<h2>height: {smurf.height}</h2>
-			</div>
-		</div>
+		<Card>
+			<Card.Content header={smurf.name} />
+			<Card.Content description={`Age: ${smurf.age}`} />
+			<Card.Content extra>{`Height: ${smurf.height}`}</Card.Content>
+			<form onSubmit={deleteSmurfs}>
+				<button type="submit">Delete</button>
+			</form>
+		</Card>
 	);
 };
 
-export default Smurf;
+export default connect(null, { deleteSmurf, getSmurf })(Smurf);
