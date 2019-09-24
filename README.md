@@ -23,10 +23,27 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+    It allows data to be passed from parent components to direct and indirect child components and vice versa.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+    I would say actions are the the way you send data from the app to the redux store via payloads. Then based on what type of action was sent with the payload, the reducer will change the state of your app in response.
+    The store is the whole state of your app, the only way to change it is through a dispatch action.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+    Application state is the state(data) of your whole app or global state. Component state is the local state of that component and only that component has access to that state.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+    redux-think is a middleware that looks at every action that passed through the system and if that action is a function it calls the function. Redux-thunk allows our action to be treated as functions so we can make API calls
+    and do things like this.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+    I'm like context api and redux, but I like redux more. I think I like it more because context api was pretty simple and not too hard to learn, but redux too some hours put in of reading and writing code until I got it down.
+    When I finally understood it I felt very proud. Aside from that, I feel like it makes your components a lot cleaner and its fun to use.
 
 ## Project Set Up
 
